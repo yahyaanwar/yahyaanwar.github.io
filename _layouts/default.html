@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Corben:wght@700&amp;family=Work+Sans:wght@400;500;700&amp;display=swap"
+    as="style">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Corben:wght@700&amp;family=Work+Sans:wght@400;500;700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/highlight.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+
+<body>
+  {% include header.html %}
+  <section>
+    <article>
+      {{ content }}
+    </article>
+  </section>
+  <section>
+    <article>
+      <h2>Tags</h2>
+      <ul class="tags">
+        {% for tag in site.tags %}
+        <li><a href="/tags/#{{ tag | first | slugify }}">{{tag | first | capitalize }}</a></li>
+        {% endfor %}
+      </ul>
+    </article>
+  </section>
+  <section>
+    <h2>Topics</h2>
+    <div class="flex flex-half">
+      {% for category in site.categories %}
+      {% assign category_name = category | first %}
+      <article>
+        <strong>{{ category_name | capitalize }}</strong>
+        <ul>
+          {% for post in site.categories[category_name] %}
+          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/highlight.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+
+</html>

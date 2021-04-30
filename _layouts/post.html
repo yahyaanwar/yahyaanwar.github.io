@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: " en-US" }}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Corben:wght@700&amp;family=Work+Sans:wght@400;500;700&amp;display=swap"
+    as="style">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Corben:wght@700&amp;family=Work+Sans:wght@400;500;700&amp;display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/normalize.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/highlight.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+
+<body>
+  {% include header.html %}
+  <section>
+    <article>
+      <h1>{{ page.title }}</h1>
+      <p class="time">
+        Diposting,
+        <time datetime="{{ page.date }}">{{ page.date | date_to_string }}</time>
+      </p>
+      {{ content }}
+      Tags:
+      <ul class="tags">
+        {% for tag in page.tags %}
+        <li><a href="/tags/#{{ tag | slugify }}">{{tag | capitalize}}</a></li>
+        {% endfor %}
+      </ul>
+    </article>
+    <nav class="clearfix">
+      {% if page.previous %}
+      <a class="t-left mw-250" href="{{ page.previous.url }}">
+        <strong>
+          {% include icons/long-arrow-alt-left.svg %}
+          Prev
+        </strong>
+        <br />
+        <small>{{ page.previous.title }}</small>
+      </a>
+      {% endif %}
+      {% if page.next %}
+      <a class="f-right t-right mw-250" href="{{ page.next.url }}">
+        <strong>
+          Next
+          {% include icons/long-arrow-alt-right.svg %}
+        </strong>
+        <br />
+        <small>{{ page.next.title }}</small>
+      </a>
+      {% endif %}
+    </nav>
+  </section>
+  <section>
+    <article>
+      <h2>Related Topics</h2>
+      <ul>
+        {% assign category_name = page.categories | array_to_sentence_string %}
+
+        {% for post in site.categories[category_name] %}
+        {% if post != page %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </article>
+  </section>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/highlight.min.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+
+</html>

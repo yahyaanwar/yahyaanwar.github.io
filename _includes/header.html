@@ -1,0 +1,25 @@
+<header>
+  <h1>{{ site.title }}</h1>
+  <nav>
+    <ul>
+      <a href="/">
+        <li {% if page.active=="home" %}class="active" {% endif %}>
+          {% include icons/home.svg %}
+          Home
+        </li>
+      </a>
+      <a href="/posts">
+        <li {% if page.active=="posts" %}class="active" {% endif %}>
+          {% include icons/pencil-alt.svg %}
+          Post
+        </li>
+      </a>
+      <a href="https://github.com/yahyaanwar" target="_blank">
+        <li>
+          {% include icons/github.svg %}
+          Github
+        </li>
+      </a>
+    </ul>
+  </nav>
+</header>

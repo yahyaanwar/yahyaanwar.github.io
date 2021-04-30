@@ -1,0 +1,52 @@
+<footer>
+  <nav style="margin-bottom: 40px;">
+    <ul style="margin: 0;">
+      <a href="/">
+        <li {% if page.active=="home" %}class="active" {% endif %}>
+          {% include icons/home.svg %}
+          Home
+        </li>
+      </a>
+      <a href="/posts">
+        <li {% if page.active=="posts" %}class="active" {% endif %}>
+          {% include icons/pencil-alt.svg %}
+          Post
+        </li>
+      </a>
+      <a href="/categories">
+        <li {% if page.active=="categories" %}class="active" {% endif %}>
+          {% include icons/chart-pie.svg %}
+          Categories
+        </li>
+      </a>
+      <a href="/tags">
+        <li {% if page.active=="tags" %}class="active" {% endif %}>
+          {% include icons/tags.svg %}
+          Tags
+        </li>
+      </a>
+    </ul>
+    <ul style="margin: 0;">
+      <a href="https://github.com/yahyaanwar" target="_blank">
+        <li>
+          {% include icons/github.svg %}
+          Github
+        </li>
+      </a>
+      <a href="https://t.me/yahyaanwar" target="_blank">
+        <li>
+          {% include icons/telegram.svg %}
+          Telegram
+        </li>
+      </a>
+      <a href="/resume">
+        <li>
+          {% include icons/file.svg %}
+          Résumé
+        </li>
+      </a>
+    </ul>
+  </nav>
+  {% include icons/copyright.svg %}
+  Yahya Anwar Ramadhan
+</footer>
